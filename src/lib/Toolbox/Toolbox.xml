@@ -28,6 +28,8 @@
         <sep gap="48"></sep>
         <block type="control_repeat" />
         <block type="control_while" />
+        <block type="control_for" />
+        <block type="control_foriterator" />
         <sep gap="48"></sep>
         <block type="control_return" />
         <block type="control_inline">

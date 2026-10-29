@@ -152,6 +152,66 @@ function register() {
         const code = `while (${BOOL}) { ${BLOCKS} };`
         return `${code}\n`;
     })
+    
+    registerBlock(`${categoryPrefix}for`, {
+        message0: 'for %1 from %2 to %3 do %4 %5',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "VAR",
+                "text": "i"
+            },
+            {
+                "type": "field_number",
+                "name": "FROM",
+                "check": "Number",
+                "value": 0,
+                "acceptsBlocks": true
+            },
+            {
+                "type": "field_number",
+                "name": "TO",
+                "check": "Number",
+                "value": 10,
+                "acceptsBlocks": true
+            },
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_statement",
+                "name": "BLOCKS"
+            }
+        ],
+        previousStatement: null,
+        nextStatement: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const VAR = block.getFieldValue('VAR');
+        const FROM = javascriptGenerator.valueToCode(block, 'FROM');
+        const TO = javascriptGenerator.valueToCode(block, 'TO');
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+        const code = `for (var ${VAR} = ${FROM}; ${VAR} <= ${TO}; ${VAR}++) { ${BLOCKS} };`
+        return `${code}\n`;
+    })
+
+    registerBlock(`${categoryPrefix}foriterator`, {
+        message0: '%1',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "VAR",
+                "text": "i"
+            }
+        ],
+        output: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+            const VAR = block.getFieldValue('VAR');
+            return [VAR, 0];
+        })
 
     registerBlock(`${categoryPrefix}repeat`, {
         message0: 'repeat %1 %2 %3',
