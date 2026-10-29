@@ -251,6 +251,28 @@ function register() {
         return `${code}\n`;
     })
 
+    registerBlock(`${categoryPrefix}break`, {
+        message0: 'break',
+        args0: [],
+        previousStatement: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const code = `break;`
+        return `${code}\n`;
+    })
+
+    registerBlock(`${categoryPrefix}continue`, {
+        message0: 'continue',
+        args0: [],
+        previousStatement: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const code = `continue;`
+        return `${code}\n`;
+    })
+
     registerBlock(`${categoryPrefix}return`, {
         message0: 'return %1',
         args0: [
