@@ -81,8 +81,8 @@ class Compiler {
 
         const headerCode = [
             `/*`,
-            `   Created with ExtForge`,
-            `   https://jwklong.github.io/extforge`,
+            `   Created with ErinForge`,
+            `   https://Erinsjustagirl.github.io/erinforge`,
             `*/`,
             `(async function (Scratch) {`,
             `const variables = {};`,
@@ -98,7 +98,7 @@ class Compiler {
                 `}`,
                 ``,
                 `let extension = new Extension();`,
-                `// code compiled from extforge`
+                `// code compiled from erinforge`
             ]
         }
         const footerCode = [

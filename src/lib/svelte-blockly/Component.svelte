@@ -116,8 +116,13 @@
         height: 100%;
     }
 
+    :global(.blocklyToolboxDiv) {
+        background: #ffffffcc;
+        backdrop-filter: blur(10px);
+    }
     :global(.dark .blocklyToolboxDiv) {
-        background: #333;
+        background: #333c;
+        backdrop-filter: blur(10px);
     }
 
     :global(.blocklyToolboxCategory) {
@@ -214,10 +219,20 @@
     :global(.dark .blocklySvg), :global(.dark .blocklyMutatorBackground) {
         background: #111;
         fill: #111;
+        backdrop-filter: blur(5px);
+    }
+
+    :global(.blocklyFlyout) {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
     }
 
     :global(.dark .blocklyFlyoutBackground) {
-        fill: #222;
+        fill: #222b;
+    }
+
+    :global(.blocklyFlyoutBackground) {
+        fill: #ffffff99;
     }
 
     :global(.dark .blocklyFlyoutLabelText) {
