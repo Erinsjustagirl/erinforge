@@ -57,6 +57,7 @@
         <block type="math_random" />
         <sep gap="48"></sep>
         <block type="math_const" />
+        <block type="math_mathop" />
         <sep gap="48"></sep>
         <block type="math_true" />
         <block type="math_false" />

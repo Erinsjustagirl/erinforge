@@ -295,6 +295,36 @@ function register() {
         return [`${code}`, 0];
     })
 
+    registerBlock(`${categoryPrefix}mathop`, {
+        message0: '%1 of %2',
+        args0: [
+            {
+                "type": "field_dropdown",
+                "name": "CHOICE",
+                "options": [
+                    ["abs", "Math.abs"],
+                    ["sqrt", "Math.sqrt"],
+                    ["sin", "Math.sin"],
+                    ["cos", "Math.cos"],
+                    ["tan", "Math.tan"]
+                ]
+            },
+            {
+                "type": "input_value",
+                "name": "X",
+                "check": "Number"
+            }
+        ],
+        output: "Number",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const CHOICE = block.getFieldValue("CHOICE")
+        const X = javascriptGenerator.valueToCode(block, 'X');
+        const code = `${CHOICE}(${X})`;
+        return [`${code}`, 0];
+    })
+
     registerBlock(`${categoryPrefix}true`, {
         message0: 'true',
         args0: [],
