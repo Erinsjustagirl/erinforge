@@ -355,6 +355,16 @@ function register() {
         const code = `(Math.random() > .5)`;
         return [`${code}`, 0];
     })
+    registerBlock(`${categoryPrefix}null`, {
+        message0: 'null',
+        args0: [],
+        output: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const code = `null`;
+        return [`${code}`, 0];
+    })
     
     registerBlock(`${categoryPrefix}nand`, {
         message0: '%1 nand %2',

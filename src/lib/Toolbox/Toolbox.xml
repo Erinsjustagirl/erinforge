@@ -62,6 +62,7 @@
         <block type="math_true" />
         <block type="math_false" />
         <block type="math_randombool" />
+        <block type="math_null" />
         <sep gap="48"></sep>
         <block type="math_and" />
         <block type="math_nand" />
@@ -130,6 +131,10 @@
         <block type="lists_set" />
         <block type="lists_join" />
         <block type="lists_concat" />
+        <block type="lists_append" />
+        <block type="lists_remove" />
+        <block type="lists_slice" />
+        <block type="lists_reverse" />
         <sep gap="48"></sep>
         <block type="lists_foreach">
             <value name="INDEX">

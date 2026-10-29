@@ -197,6 +197,102 @@ function register() {
         const code = `(${INPUT}.join(${TEXT}))`;
         return [`${code}`, 0];
     })
+
+    registerBlock(`${categoryPrefix}reverse`, {
+        message0: 'reverse %1',
+        args0: [
+            {
+                "type": "input_value",
+                "name": "INPUT",
+                "check": "List"
+            }
+        ],
+        inputsInline: true,
+        output: "List",
+        colour: categoryColor,
+    }, (block) => {
+        const INPUT = javascriptGenerator.valueToCode(block, 'INPUT')
+        const code = `([...${INPUT}].reverse())`;
+        return [`${code}`, 0];
+    })
+
+    registerBlock(`${categoryPrefix}slice`, {
+        message0: 'slice %1 from %2 to %3',
+        args0: [
+            {
+                "type": "input_value",
+                "name": "INPUT",
+                "check": "List"
+            },
+            {
+                "type": "input_value",
+                "name": "START",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "END",
+                "check": "Number"
+            }
+        ],
+        inputsInline: true,
+        output: "List",
+        colour: categoryColor,
+    }, (block) => {
+        const INPUT = javascriptGenerator.valueToCode(block, 'INPUT')
+        const START = javascriptGenerator.valueToCode(block, 'START')
+        const END = javascriptGenerator.valueToCode(block, 'END')
+        const code = `${INPUT}.slice(${START} - 1, ${END})`;
+        return [`${code}`, 0];
+    })
+
+    registerBlock(`${categoryPrefix}append`, {
+        message0: 'append %1 to %2',
+        args0: [
+            {
+                "type": "input_value",
+                "name": "ITEM",
+                "check": "String"
+            },
+            {
+                "type": "input_value",
+                "name": "LIST",
+                "check": "List"
+            }
+        ],
+        inputsInline: true,
+        output: "List",
+        colour: categoryColor,
+    }, (block) => {
+        const ITEM = javascriptGenerator.valueToCode(block, 'ITEM')
+        const LIST = javascriptGenerator.valueToCode(block, 'LIST')
+        const code = `(${LIST}.concat(${ITEM}))`;
+        return [`${code}`, 0];
+    })
+
+    registerBlock(`${categoryPrefix}remove`, {
+        message0: 'remove %1 from %2',
+        args0: [
+            {
+                "type": "input_value",
+                "name": "ITEM",
+                "check": "String"
+            },
+            {
+                "type": "input_value",
+                "name": "LIST",
+                "check": "List"
+            }
+        ],
+        inputsInline: true,
+        output: "List",
+        colour: categoryColor,
+    }, (block) => {
+        const ITEM = javascriptGenerator.valueToCode(block, 'ITEM')
+        const LIST = javascriptGenerator.valueToCode(block, 'LIST')
+        const code = `(${LIST}.filter(x => x !== ${ITEM}))`;
+        return [`${code}`, 0];
+    })
     
     registerBlock(`${categoryPrefix}concat`, {
         message0: 'concat %1 with %2',
