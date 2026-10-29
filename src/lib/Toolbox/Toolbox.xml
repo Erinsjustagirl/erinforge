@@ -92,6 +92,8 @@
         <sep gap="48"></sep>
         <block type="strings_uppercase" />
         <block type="strings_lowercase" />  
+        <block type="strings_trim" />
+        <block type="strings_reverse" />
         <sep gap="48"></sep>
         <block type="strings_log" />
     </category>

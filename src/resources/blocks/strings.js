@@ -352,6 +352,46 @@ function register() {
         return [`${code}`, 0];
     })
 
+    registerBlock(`${categoryPrefix}trim`, {
+        message0: 'trim %1',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "X",
+                "check": "String",
+                "text": "   apple   ",
+                "acceptsBlocks": true
+            }
+        ],
+        output: "String",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X');
+        const code = `(${X}).trim()`;
+        return [`${code}`, 0];
+    })
+
+    registerBlock(`${categoryPrefix}reverse`, {
+        message0: 'reverse %1',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "X",
+                "check": "String",
+                "text": "apple",
+                "acceptsBlocks": true
+            }
+        ],
+        output: "String",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X');
+        const code = `[...String(${X})].reverse().join("")`;
+        return [`${code}`, 0];
+    })
+
     registerBlock(`${categoryPrefix}letterOf`, {
         message0: 'letter of %1 at %2',
         args0: [
