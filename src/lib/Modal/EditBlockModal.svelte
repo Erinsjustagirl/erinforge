@@ -42,6 +42,7 @@
         previewBlock.initSvg();
         previewBlock.render();
         requestAnimationFrame(() => {
+            if (!workspace || !previewBlock) return
             workspace.centerOnBlock(previewBlock.id)
         })
 
@@ -73,6 +74,7 @@
         }
 
         addEventListener("resize", ev => {
+            if (!workspace || !previewBlock) return
             workspace.centerOnBlock(previewBlock.id)
         })
     });
@@ -103,6 +105,7 @@
                                 <option value="string">String</option>
                                 <option value="number">Number</option>
                                 <option value="boolean">Boolean</option>
+                                <option value="list">List</option>
                             </select>
                         </td>
                         <td>

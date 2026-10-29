@@ -30,6 +30,7 @@ export default {
                 }
                 case "string":
                 case "number":
+                case "list":
                 case "boolean": {
                     return `[${field.id}]`
                 }

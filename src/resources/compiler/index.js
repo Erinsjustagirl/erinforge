@@ -147,6 +147,11 @@ class Compiler {
                                 type: "Boolean"
                             }]
                         }
+                        case 'list': {
+                            return [v.id, {
+                                type: "array"
+                            }]
+                        }
                     }
                 }))
             }
