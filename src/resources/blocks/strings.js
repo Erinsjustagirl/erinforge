@@ -313,6 +313,73 @@ function register() {
         return [`${code}`, 0];
     })
 
+    registerBlock(`${categoryPrefix}uppercase`, {
+        message0: 'uppercase %1',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "X",
+                "check": "String",
+                "text": "foo",
+                "acceptsBlocks": true
+            }
+        ],
+        output: "String",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X');
+        const code = `(${X}).toUpperCase()`;
+        return [`${code}`, 0];
+    })
+    registerBlock(`${categoryPrefix}lowercase`, {
+        message0: 'lowercase %1',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "X",
+                "check": "String",
+                "text": "foo",
+                "acceptsBlocks": true
+            }
+        ],
+        output: "String",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X');
+        const code = `(${X}).toLowerCase()`;
+        return [`${code}`, 0];
+    })
+
+    registerBlock(`${categoryPrefix}letterOf`, {
+        message0: 'letter of %1 at %2',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "X",
+                "check": "String",
+                "text": "apple",
+                "acceptsBlocks": true
+            },
+            {
+                "type": "field_input",
+                "name": "Y",
+                "check": "Number",
+                "text": "1",
+                "acceptsBlocks": true
+            }
+        ],
+        output: "String",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X');
+        const Y = javascriptGenerator.valueToCode(block, 'Y');
+        const code = `(${X}).charAt(${Y} - 1)`;
+        return [`${code}`, 0];
+    })
+
     const strings_join_mutator = {
         items_: 0,
 

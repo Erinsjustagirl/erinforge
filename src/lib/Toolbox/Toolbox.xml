@@ -87,6 +87,10 @@
         <block type="strings_contains" />
         <block type="strings_amountof" />
         <block type="strings_replace" />
+        <block type="strings_letterOf" />
+        <sep gap="48"></sep>
+        <block type="strings_uppercase" />
+        <block type="strings_lowercase" />  
         <sep gap="48"></sep>
         <block type="strings_log" />
     </category>
