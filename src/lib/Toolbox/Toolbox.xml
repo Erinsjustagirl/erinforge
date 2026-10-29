@@ -61,6 +61,7 @@
         <block type="math_randombool" />
         <sep gap="48"></sep>
         <block type="math_and" />
+        <block type="math_nand" />
         <block type="math_xor" />
         <block type="math_or" />
         <block type="math_not" />

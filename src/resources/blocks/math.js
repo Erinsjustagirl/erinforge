@@ -286,6 +286,30 @@ function register() {
         return [`${code}`, 0];
     })
     
+    registerBlock(`${categoryPrefix}nand`, {
+        message0: '%1 nand %2',
+        args0: [
+            {
+                "type": "input_value",
+                "name": "X",
+                "check": "Boolean"
+            },
+            {
+                "type": "input_value",
+                "name": "Y",
+                "check": "Boolean"
+            }
+        ],
+        output: "Boolean",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X') || 'false';
+        const Y = javascriptGenerator.valueToCode(block, 'Y') || 'false';
+        const code = `!(${X} && ${Y})`;
+        return [`${code}`, 0];
+    })
+    
     registerBlock(`${categoryPrefix}and`, {
         message0: '%1 and %2',
         args0: [
