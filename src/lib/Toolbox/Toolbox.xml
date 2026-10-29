@@ -131,7 +131,7 @@
         </block>
     </category>
     <category name="Lambdas" colour="#d46">
-
+    <!-- do later -->
     </category>
     <category name="Blocks" colour="#b6f" custom="blocks">
         <!-- resources/categories/blocks.js -->

@@ -83,6 +83,7 @@ class Compiler {
             `/*`,
             `   Created with ErinForge`,
             `   https://Erinsjustagirl.github.io/erinforge`,
+            `   original at https://jwklong.github.io/extforge`,
             `*/`,
             `(async function (Scratch) {`,
             `const variables = {};`,

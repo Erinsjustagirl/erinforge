@@ -208,7 +208,7 @@
 </script>
 
 <head>
-  <title>ExtForge</title>
+  <title>ErinForge</title>
 </head>
 
 <NavigationBar>
