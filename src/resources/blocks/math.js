@@ -231,6 +231,46 @@ function register() {
         const code = `(Math.log(${Y}) / Math.log(${X}))`;
         return [`${code}`, 0];
     })
+
+    registerBlock(`${categoryPrefix}floor`, {
+        message0: 'floor %1',
+        args0: [
+            {
+                "type": "field_number",
+                "name": "X",
+                "check": "Number",
+                "value": 3.14,
+                "acceptsBlocks": true
+            }
+        ],
+        output: "Number",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X');
+        const code = `Math.floor(${X})`;
+        return [`${code}`, 0];
+    })
+
+    registerBlock(`${categoryPrefix}ceil`, {
+        message0: 'ceil %1',
+        args0: [
+            {
+                "type": "field_number",
+                "name": "X",
+                "check": "Number",
+                "value": 3.14,
+                "acceptsBlocks": true
+            }
+        ],
+        output: "Number",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X');
+        const code = `Math.ceil(${X})`;
+        return [`${code}`, 0];
+    })
     
     registerBlock(`${categoryPrefix}const`, {
         message0: '%1',
@@ -309,7 +349,7 @@ function register() {
         const code = `!(${X} && ${Y})`;
         return [`${code}`, 0];
     })
-    
+
     registerBlock(`${categoryPrefix}and`, {
         message0: '%1 and %2',
         args0: [

@@ -51,6 +51,8 @@
         <block type="math_pow" />
         <block type="math_mod" />
         <block type="math_log" />
+        <block type="math_floor" />
+        <block type="math_ceil" />
         <sep gap="48"></sep>
         <block type="math_random" />
         <sep gap="48"></sep>
