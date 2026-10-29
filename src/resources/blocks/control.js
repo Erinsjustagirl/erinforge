@@ -239,7 +239,7 @@ function register() {
         const AMT = javascriptGenerator.valueToCode(block, 'AMT');
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const varName = "temp_"+util.randomHex(24)
-        const code = `for (var ${varName} = 0; ${varName} < ${AMT}; ${varName}++) { ${BLOCKS} };`
+        const code = `for (let ${varName} = 0; ${varName} < ${AMT}; ${varName}++) { ${BLOCKS} };`
         return `${code}\n`;
     })
 
