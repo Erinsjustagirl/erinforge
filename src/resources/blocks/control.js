@@ -192,7 +192,7 @@ function register() {
         const FROM = javascriptGenerator.valueToCode(block, 'FROM');
         const TO = javascriptGenerator.valueToCode(block, 'TO');
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
-        const code = `for (var ${VAR} = ${FROM}; ${VAR} <= ${TO}; ${VAR}++) { ${BLOCKS} };`
+        const code = `for (let ${VAR} = ${FROM}; ${VAR} <= ${TO}; ${VAR}++) { ${BLOCKS} };`
         return `${code}\n`;
     })
 
@@ -239,7 +239,7 @@ function register() {
         const AMT = javascriptGenerator.valueToCode(block, 'AMT');
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const varName = "temp_"+util.randomHex(24)
-        const code = `for (let ${varName} = 0; ${varName} < ${AMT}; ${varName}++) { ${BLOCKS} };`
+        const code = `for (var ${varName} = 0; ${varName} < ${AMT}; ${varName}++) { ${BLOCKS} };`
         return `${code}\n`;
     })
 
