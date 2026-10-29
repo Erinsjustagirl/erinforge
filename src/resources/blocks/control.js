@@ -154,7 +154,7 @@ function register() {
     })
     
     registerBlock(`${categoryPrefix}for`, {
-        message0: 'for %1 from %2 to %3 do %4 %5',
+        message0: 'for %1 from %2 to %3 by %4 do %5 %6',
         args0: [
             {
                 "type": "field_input",
@@ -176,6 +176,13 @@ function register() {
                 "acceptsBlocks": true
             },
             {
+                "type": "field_number",
+                "name": "STEP",
+                "check": "Number",
+                "value": 1,
+                "acceptsBlocks": true
+            },
+            {
                 "type": "input_dummy"
             },
             {
@@ -192,7 +199,8 @@ function register() {
         const FROM = javascriptGenerator.valueToCode(block, 'FROM');
         const TO = javascriptGenerator.valueToCode(block, 'TO');
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
-        const code = `for (let ${VAR} = ${FROM}; ${VAR} <= ${TO}; ${VAR}++) { ${BLOCKS} };`
+        const STEP = javascriptGenerator.valueToCode(block, 'STEP');
+        const code = `for (let ${VAR} = ${FROM}; ${VAR} <= ${TO}; ${VAR} += ${STEP}) { ${BLOCKS} };`
         return `${code}\n`;
     })
 
