@@ -11,6 +11,8 @@
         <block type="events_loaded" />
         <sep gap="48"></sep>
         <block type="events_thread" />
+        <block type="events_datathread" />
+        <block type="events_threaddata" />
         <sep gap="48"></sep>
         <block type="events_regbroadcast" />
         <block type="events_broadcast" />

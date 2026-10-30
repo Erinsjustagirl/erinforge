@@ -42,9 +42,61 @@ function register() {
         colour: categoryColor
     }, (block) => {
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
-        const code = `(async () => { ${BLOCKS} })();`;
+        const code = `;(async () => { ${BLOCKS} })();`;
         return `${code}\n`;
     })
+
+        registerBlock(`${categoryPrefix}datathread`, {
+        message0: 'new thread with %1 as %2 %3 %4',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "DATA",
+                "check": null,
+                "text": "",
+                "acceptsBlocks": true
+            },
+            {
+                type: "field_input",
+                name: "NAME",
+                text: "data",
+            },
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_statement",
+                "name": "BLOCKS"
+            }
+        ],
+        previousStatement: null,
+        nextStatement: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const DATA = javascriptGenerator.valueToCode(block, 'DATA') || 'null';
+        const NAME = block.getFieldValue('NAME');
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+        const code = `;(async (${NAME}) => { ${BLOCKS} })(${DATA});`;
+        return `${code}\n`;
+    })
+
+    registerBlock(`${categoryPrefix}threaddata`, {
+            message0: '%1',
+            args0: [
+                {
+                    "type": "field_input",
+                    "name": "NAME",
+                    "text": "data"
+                }
+            ],
+            output: null,
+            inputsInline: true,
+            colour: categoryColor
+        }, (block) => {
+                const NAME = block.getFieldValue('NAME');
+                return [NAME, 0];
+        })
 
     //broadcasts
     registerBlock(`${categoryPrefix}regbroadcast`, {
