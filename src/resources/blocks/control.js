@@ -152,6 +152,27 @@ function register() {
         const code = `while (${BOOL}) { ${BLOCKS} };`
         return `${code}\n`;
     })
+
+    registerBlock(`${categoryPrefix}forever`, {
+        message0: 'forever %1 %2',
+        args0: [
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_statement",
+                "name": "BLOCKS"
+            }
+        ],
+        previousStatement: null,
+        nextStatement: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+        const code = `while (true) { ${BLOCKS} };`
+        return `${code}\n`;
+    })
     
     registerBlock(`${categoryPrefix}for`, {
         message0: 'for %1 from %2 to %3 by %4 do %5 %6',
