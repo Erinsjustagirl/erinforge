@@ -29,6 +29,7 @@
   import NavIconLoad from "$lib/images/nav/load.svg";
   import NavIconExperiments from "$lib/images/nav/experiments.svg";
   import NavIconDark from "$lib/images/nav/dark.svg";
+  import NavIconNew from "$lib/images/nav/plus.svg"
 
   import TabManager from "$lib/TabManager/TabManager.svelte";
   import Tab from "$lib/TabManager/Tab.svelte";
@@ -168,6 +169,11 @@
     });
   }
 
+  function newProject() {
+      if (!confirm("Start a new project? Unsaved work will be lost.")) return
+      location.reload()
+  }
+
   onMount(() => {
     code = "";
 
@@ -223,13 +229,12 @@
   <NavigationButton icon={NavIconLoad} on:click={loadProject}>
     Load
   </NavigationButton>
+  <NavigationButton icon={NavIconNew} on:click={newProject}>
+    New
+  </NavigationButton>
   <NavigationDivider />
   <NavigationButton icon={NavIconExperiments} on:click={() => openModal("experiments")}>
     Experiments
-  </NavigationButton>
-  <NavigationDivider />
-  <NavigationButton on:click={() => window.open("https://discord.gg/NeYug9v2hq", '_blank')}>
-    Discord
   </NavigationButton>
 </NavigationBar>
 <div id="main">
