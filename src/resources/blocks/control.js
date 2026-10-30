@@ -122,7 +122,7 @@ function register() {
         const BOOL = javascriptGenerator.valueToCode(block, 'BOOL');
         const v1 = "temp_"+util.randomHex(24)
         const v2 = "temp_"+util.randomHex(24)
-        const code = `await new Promise(${v1} => {let ${v2} = () => false ? ${v1}() : requestAnimationFrame(${v2}); ${v2}()})`;
+        const code = `await new Promise(${v1} => {let ${v2} = () => ${BOOL} ? ${v1}() : requestAnimationFrame(${v2}); ${v2}()})`;
         return `${code}\n`;
     })
 
