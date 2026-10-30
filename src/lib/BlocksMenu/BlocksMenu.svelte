@@ -51,6 +51,22 @@
         window.modals["editblock"].toggle()
     }
 
+    function deleteBlock(id) {
+        const workspace = window.workspace
+        const used = workspace.getAllBlocks(false)
+            .filter(b => b.blockId_ === id)
+
+        const callCount = used.filter(b => b.type === "blocks_execute").length
+        if (!confirm(`Delete this block? This will also delete ${callCount} block(s) that use it.`)) return
+
+        for (const b of used) {
+            if (workspace.getBlockById(b.id)) b.dispose(true)
+        }
+
+        delete window.blocks[id]
+        updateBlocks()
+    }
+
     setInterval(() => {
         if (!globalThis.window) return
         blocks = window.blocks
@@ -66,7 +82,10 @@
         <div class="block">
             <span class="name">{util.blockToName(block.fields)}</span>
             <div>
-                <button class="edit" on:click={() => editBlock(id)}>Edit</button>
+                <div class="buttons">
+                    <button class="edit" on:click={() => editBlock(id)}>Edit</button>
+                    <button class="delete" on:click={() => deleteBlock(id)}>Delete</button>
+                </div>
             </div>
         </div>
     {:else}
@@ -97,11 +116,15 @@
         padding: 8px;
     }
 
+    .buttons .delete {
+        background-color: #ff4444;
+    }
+
     .block button {
         appearance: none;
         border: none;
         background: #4bf;
-        width: 100%;
+        width: auto;
         font-size: 1rem;
         padding: 0.4rem 1rem;
         border-radius: 0.2em;
@@ -109,5 +132,10 @@
         display: flex;
         justify-content: flex-end;
         font-weight: bold;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 8px;
     }
 </style>
