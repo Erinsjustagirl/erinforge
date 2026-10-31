@@ -43,6 +43,66 @@ function register() {
         const OBJ = javascriptGenerator.valueToCode(block, 'OBJ');
         return [`JSON.stringify(${OBJ})`, 0];
     })
+
+    registerBlock(`${categoryPrefix}get`, {
+        message0: 'get %1 of %2',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "PROPERTY",
+                "check": "String",
+                "text": "foo",
+                "acceptsBlocks": true
+            },
+            {
+                "type": "input_value",
+                "name": "OBJ",
+                "acceptsBlocks": true,
+                "check": "Object"
+            }
+        ],
+        output: "Object",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const PROPERTY = javascriptGenerator.valueToCode(block, 'PROPERTY');
+        const OBJ = javascriptGenerator.valueToCode(block, 'OBJ');
+        return [`(${OBJ}[${PROPERTY}] ?? null)`, 0];
+    })
+
+    registerBlock(`${categoryPrefix}set`, {
+        message0: 'set %1 of %2 to %3',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "PROPERTY",
+                "check": "String",
+                "text": "foo",
+                "acceptsBlocks": true
+            },
+            {
+                "type": "input_value",
+                "name": "OBJ",
+                "acceptsBlocks": true,
+                "check": "Object"
+            },
+            {
+                "type": "field_input",
+                "name": "VALUE",
+                "check": null,
+                "text": "bar",
+                "acceptsBlocks": true
+            }
+        ],
+        output: "Object",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const PROPERTY = javascriptGenerator.valueToCode(block, 'PROPERTY');
+        const OBJ = javascriptGenerator.valueToCode(block, 'OBJ');
+        const VALUE = javascriptGenerator.valueToCode(block, 'VALUE');
+        return [`(() => { ${OBJ}[${PROPERTY}] = ${VALUE}; return ${OBJ}; })()`, 0];
+    })
 }
 
 export default register;

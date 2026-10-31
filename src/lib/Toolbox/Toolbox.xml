@@ -152,6 +152,9 @@
     <category name="Objects" colour="#f6c">
         <block type="objects_parse" />
         <block type="objects_stringify" />
+        <sep gap="48"></sep>
+        <block type="objects_get" />
+        <block type="objects_set" />
     </category>
     <category name="Lambdas" colour="#d46">
     <!-- do later -->
