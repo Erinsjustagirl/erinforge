@@ -64,7 +64,7 @@ function register() {
     }, (block) => {
         const INDEX = javascriptGenerator.valueToCode(block, 'INDEX')
         const INPUT = javascriptGenerator.valueToCode(block, 'INPUT')
-        const code = `(${INPUT}[${INDEX}-1])`;
+        const code = `(${INPUT}[${INDEX}-1] ?? null)`;
         return [`${code}`, 0];
     })
     

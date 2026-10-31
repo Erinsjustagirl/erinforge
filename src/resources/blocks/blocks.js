@@ -187,9 +187,11 @@ function register() {
             this.blockId_ = xmlElement.getAttribute('blockId') ?? "";
             this.updateShape_();
         },
-
+        // i asked ai to rewrite updateShape sorry
         updateShape_: function() {
-            for (let i = 0; this.removeInput(`INPUT${i}`, true); i++) {}
+            for (const input of [...this.inputList]) {
+                this.removeInput(input.name, true)
+            }
 
             let block = window.blocks[this.blockId_]
             if (!block) return
@@ -198,73 +200,68 @@ function register() {
             this.setPreviousStatement(false)
             this.setNextStatement(false)
 
+            // what the block itself looks like
             switch (block.type) {
-                case "command": {
+                case "command":
                     this.setPreviousStatement(true, null)
                     this.setNextStatement(true, null)
                     break
-                }
-                case "reporter": {
-                    this.setOutput(true, ["String", "Number", "Boolean", "List"])
+                case "reporter":
+                    this.setOutput(true, ["String", "Number", "Boolean", "List", "Object"])
                     break
-                }
-                case "Boolean": {
+                case "Boolean":
                     this.setOutput(true, "Boolean")
                     break
-                }
-                case "list": {
-                    var input = this.appendValueInput(`INPUT${i}`)
-                    input.setCheck("List")
+                case "list":
+                    this.setOutput(true, "List")
                     break
-                }
-                case "object": {
-                    var input = this.appendValueInput(`INPUT${i}`)
-                    input.setCheck("Object")
+                case "object":
+                    this.setOutput(true, "Object")
                     break
-                }
+                default:
+                    this.setOutput(true, null)
             }
-            
+
+            // its argument slots
             let i = 0
             for (let field of block.fields) {
                 switch (field.type) {
                     case "label":
                         this.appendDummyInput(`INPUT${i}`)
                             .appendField(field.text)
-                        break;
-                    case "string":
-                        var input = this.appendValueInput(`INPUT${i}`)
+                        break
+                    case "string": {
+                        const input = this.appendValueInput(`INPUT${i}`)
                         input.setCheck("String")
-                        var inputInside = this.workspace.newBlock('generic_text')
-                        inputInside.setFieldValue(field.default, "TEXT")
-                        inputInside.setShadow(true)
-                        inputInside.initSvg()
-                        inputInside.render()
-                        inputInside.outputConnection.connect(input.connection)
+                        const inside = this.workspace.newBlock('generic_text')
+                        inside.setFieldValue(field.default, "TEXT")
+                        inside.setShadow(true)
+                        inside.initSvg()
+                        inside.render()
+                        inside.outputConnection.connect(input.connection)
                         break
-                    case "number":
-                        var input = this.appendValueInput(`INPUT${i}`)
+                    }
+                    case "number": {
+                        const input = this.appendValueInput(`INPUT${i}`)
                         input.setCheck("Number")
-                        var inputInside = this.workspace.newBlock('generic_number')
-                        inputInside.setFieldValue(Number(field.default) || 0, "NUMBER")
-                        inputInside.setShadow(true)
-                        inputInside.initSvg()
-                        inputInside.render()
-                        inputInside.outputConnection.connect(input.connection)
+                        const inside = this.workspace.newBlock('generic_number')
+                        inside.setFieldValue(Number(field.default) || 0, "NUMBER")
+                        inside.setShadow(true)
+                        inside.initSvg()
+                        inside.render()
+                        inside.outputConnection.connect(input.connection)
                         break
+                    }
                     case "boolean":
-                        var input = this.appendValueInput(`INPUT${i}`)
-                        input.setCheck("Boolean")
+                        this.appendValueInput(`INPUT${i}`).setCheck("Boolean")
                         break
                     case "list":
-                        var input = this.appendValueInput(`INPUT${i}`)
-                        input.setCheck("List")
+                        this.appendValueInput(`INPUT${i}`).setCheck("List")
                         break
                     case "object":
-                        var input = this.appendValueInput(`INPUT${i}`)
-                        input.setCheck("Object")
+                        this.appendValueInput(`INPUT${i}`).setCheck("Object")
                         break
                 }
-
                 i++
             }
         }

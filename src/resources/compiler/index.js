@@ -127,7 +127,9 @@ class Compiler {
             return {
                 opcode: `block_${id}`,
                 text: util.blockToExtensionText(block.fields),
-                blockType: block.type,
+                blockType: (block.type === "list" || block.type === "object") ? "reporter" : block.type,
+                blockShape: block.type === "list" ? "__ARR_SHAPE__" : block.type === "object" ? "__OBJ_SHAPE__" : undefined,
+                allowDropAnywhere: (block.type === "list" || block.type === "object") ? true : undefined,
                 arguments: Object.fromEntries(block.fields.filter(v => v.type !== 'label').map(v => {
                     switch (v.type) {
                         case 'string': {
@@ -149,7 +151,14 @@ class Compiler {
                         }
                         case 'list': {
                             return [v.id, {
-                                type: "array"
+                                type: "array",
+                                shape: "__ARR_SHAPE__"
+                            }]
+                        }
+                        case 'object': {
+                            return [v.id, {
+                                type: "object",
+                                shape: "__OBJ_SHAPE__"
                             }]
                         }
                     }
@@ -158,16 +167,24 @@ class Compiler {
             }
         })
 
+        const infoText = JSON.stringify(classRegistry.extensionInfo)
+        .replaceAll('"__ARR_SHAPE__"', 'Scratch.BlockShape?.SQUARE')
+        .replaceAll('"__OBJ_SHAPE__"', 'Scratch.extensions.isPenguinMod ? Scratch.BlockShape?.PLUS : Scratch.BlockShape?.ROUND')
+        
         return [].concat(headerCode, classRegistry.top, [
             `getInfo() {`,
-            `   return ${JSON.stringify(classRegistry.extensionInfo).substring(0, JSON.stringify(classRegistry.extensionInfo).length - 1)}}`,
+            `   return ${infoText.substring(0, infoText.length - 1)}}`,
             `}`,
         ], Object.entries(window.blocks ?? {}).map(([id, block]) => {
             let blockCode = javascriptGenerator.statementToCode(
                 workspace.getTopBlocks().find(v => v.type == "blocks_define" && v.blockId_ == id),
                 "BLOCKS"
             )
-            return `async block_${id}(args) { ${blockCode} }`
+            const defaults = block.fields
+                .filter(f => f.type === "list" || f.type === "object")
+                .map(f => `args["${f.id}"] ??= ${f.type === "list" ? "[]" : "{}"};`)
+                .join(" ")
+            return `async block_${id}(args) { ${defaults} ${blockCode} }`
         }), classRegistry.bottom, code, footerCode).join('\n');
     }
 }
