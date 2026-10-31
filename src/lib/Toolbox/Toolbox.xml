@@ -150,6 +150,7 @@
     </category>
     <category name="Objects" colour="#f6c">
         <block type="objects_parse" />
+        <block type="objects_stringify" />
     </category>
     <category name="Lambdas" colour="#d46">
     <!-- do later -->

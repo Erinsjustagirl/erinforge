@@ -53,6 +53,7 @@ function register() {
                     case "number":
                     case "boolean":
                     case "list":
+                    case "object":
                         var input = this.appendValueInput(`INPUT${i}`)
                         let reporter = this.workspace.newBlock(`${categoryPrefix}input`)
                         reporter.blockId_ = this.blockId_
@@ -137,6 +138,9 @@ function register() {
                     case "list":
                         this.setOutput(true, "List")
                         break
+                    case "object":
+                        this.setOutput(true, "Object")
+                        break
                     default:
                         this.setOutput(true, null)
                 }
@@ -209,9 +213,14 @@ function register() {
                     break
                 }
                 case "list": {
-                var input = this.appendValueInput(`INPUT${i}`)
-                input.setCheck("List")
-                break
+                    var input = this.appendValueInput(`INPUT${i}`)
+                    input.setCheck("List")
+                    break
+                }
+                case "object": {
+                    var input = this.appendValueInput(`INPUT${i}`)
+                    input.setCheck("Object")
+                    break
                 }
             }
             

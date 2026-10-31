@@ -106,6 +106,7 @@
                                 <option value="number">Number</option>
                                 <option value="boolean">Boolean</option>
                                 <option value="list">List</option>
+                                <option value="object">Object</option>
                             </select>
                         </td>
                         <td>
@@ -160,6 +161,8 @@
                 <option value="command">Command</option>
                 <option value="reporter">Reporter</option>
                 <option value="Boolean">Boolean</option>
+                <option value="List">List</option>
+                <option value="Object">Object</option>
             </select>
                 <label>
                     <input

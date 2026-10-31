@@ -14,16 +14,34 @@ function register() {
                 "type": "field_input",
                 "name": "TEXT",
                 "check": "String",
-                "text": "{}",
+                "text": "{\"foo\": \"bar\"}",
                 "acceptsBlocks": true,
             }
         ],
-        output: null,
+        output: "Object",
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
         const TEXT = javascriptGenerator.valueToCode(block, 'TEXT');
         return [`(() => { try { return JSON.parse(${TEXT}); } catch { return null; } })()`, 0];
+    })
+
+    registerBlock(`${categoryPrefix}stringify`, {
+        message0: 'stringify %1',
+        args0: [
+            {
+                "type": "input_value",
+                "name": "OBJ",
+                "acceptsBlocks": true,
+                "check": "Object"
+            }
+        ],
+        output: "String",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const OBJ = javascriptGenerator.valueToCode(block, 'OBJ');
+        return [`JSON.stringify(${OBJ})`, 0];
     })
 }
 
