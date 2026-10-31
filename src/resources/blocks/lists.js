@@ -387,6 +387,25 @@ function register() {
         const code = `ExtForge.Utils.lists_foreach.value[ExtForge.Utils.lists_foreach.depth]`
         return [`${code}`, 0];
     })
+    registerBlock(`${categoryPrefix}parse`, {
+        message0: 'parse %1 as list',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "TEXT",
+                "check": "String",
+                "text": "[1, 2, 3]",
+                "acceptsBlocks": true
+            }
+        ],
+        output: "List",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const TEXT = javascriptGenerator.valueToCode(block, 'TEXT');
+        const code = `(() => { const v = ${TEXT}; if (Array.isArray(v)) return v; try { const p = JSON.parse(v); return Array.isArray(p) ? p : []; } catch { return []; } })()`;
+        return [`${code}`, 0];
+    })
 
     const lists_create_mutator = {
         items_: 0,

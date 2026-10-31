@@ -134,6 +134,7 @@
         <block type="lists_set" />
         <block type="lists_join" />
         <block type="lists_concat" />
+        <block type="lists_parse" />
         <block type="lists_append" />
         <block type="lists_remove" />
         <block type="lists_slice" />

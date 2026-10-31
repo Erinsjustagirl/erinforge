@@ -44,11 +44,11 @@ const ExtForge = {
         }
 
         add(v) {
-            return new Vector(this.x + v.x, this.y + v.y);
+            return new ExtForge.Vector(this.x + v.x, this.y + v.y);
         }
 
         set(x, y) {
-            return new Vector(x ?? this.x, y ?? this.y)
+            return new ExtForge.Vector(x ?? this.x, y ?? this.y)
         }
     },
 
