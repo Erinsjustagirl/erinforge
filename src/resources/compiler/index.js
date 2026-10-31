@@ -153,7 +153,8 @@ class Compiler {
                             }]
                         }
                     }
-                }))
+                })),
+                hideFromPalette: block.hidden ? true : undefined
             }
         })
 

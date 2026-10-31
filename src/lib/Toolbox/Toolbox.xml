@@ -148,6 +148,9 @@
             </value>
         </block>
     </category>
+    <category name="Objects" colour="#f6c">
+        <block type="objects_parse" />
+    </category>
     <category name="Lambdas" colour="#d46">
     <!-- do later -->
     </category>

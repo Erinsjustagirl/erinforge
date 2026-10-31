@@ -161,6 +161,18 @@
                 <option value="reporter">Reporter</option>
                 <option value="Boolean">Boolean</option>
             </select>
+                <label>
+                    <input
+                    type="checkbox"
+                    checked={data.tempBlock?.hidden ?? false}
+                    on:change={(e) => {
+                        data.tempBlock.hidden = e.target.checked
+                        data.update()
+                        updateBlocks(data)
+                    }}
+                />
+                Hidden from palette?
+            </label>
         </div>
     </div>
 </Modal>
@@ -202,6 +214,19 @@
     }
 
     .bottom {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
 
+    .bottom label {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+    }
+
+    .bottom input[type="checkbox"] {
+        width: auto;
     }
 </style>

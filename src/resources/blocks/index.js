@@ -7,6 +7,7 @@ import registerVectors from "./vectors";
 import registerInputs from "./inputs";
 import registerVariables from "./variables";
 import registerLists from "./lists";
+import registerObjects from "./objects";
 import registerBlocks from "./blocks";
 
 import registerRuntime from "./runtime";
@@ -22,6 +23,7 @@ export default () => {
     registerInputs();
     registerVariables();
     registerLists();
+    registerObjects();
     registerBlocks();
 
     registerRuntime();
