@@ -259,6 +259,10 @@ function register() {
                         var input = this.appendValueInput(`INPUT${i}`)
                         input.setCheck("List")
                         break
+                    case "object":
+                        var input = this.appendValueInput(`INPUT${i}`)
+                        input.setCheck("Object")
+                        break
                 }
 
                 i++
