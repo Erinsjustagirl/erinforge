@@ -139,7 +139,7 @@ function register() {
                 "type": "field_input",
                 "name": "TEXT",
                 "check": null,
-                "text": "",
+                "text": "foo",
                 "acceptsBlocks": true
             }
         ],
@@ -225,12 +225,12 @@ function register() {
                 "check": "List"
             },
             {
-                "type": "input_value",
+                "type": "field_input",
                 "name": "START",
                 "check": "Number"
             },
             {
-                "type": "input_value",
+                "type": "field_input",
                 "name": "END",
                 "check": "Number"
             }
